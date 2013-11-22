@@ -20,6 +20,11 @@ public class PlayerControl : MonoBehaviour
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
 	private Animator anim;					// Reference to the player's animator component.
+	private Vector2 mousePos;				// Mouse position for rotating gun.
+	private Camera cam;
+	public GameObject gun;
+	public GameObject shoulder;
+
 
 
 	void Awake()
@@ -27,6 +32,7 @@ public class PlayerControl : MonoBehaviour
 		// Setting up references.
 		groundCheck = transform.Find("groundCheck");
 		anim = GetComponent<Animator>();
+		cam = GameObject.Find ("Main Camera").camera;
 	}
 
 
@@ -38,6 +44,23 @@ public class PlayerControl : MonoBehaviour
 		// If the jump button is pressed and the player is grounded then the player should jump.
 		if(Input.GetButtonDown("Jump") && grounded)
 			jump = true;
+
+		//Gun rotation.
+		mousePos = cam.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+		float rotation = Mathf.Atan2((mousePos.y - gun.transform.position.y), (mousePos.x - gun.transform.position.x)) * Mathf.Rad2Deg;
+		Debug.Log (rotation);
+		if(facingRight){ 
+			if((rotation <= 65 && rotation > 0) || (rotation >= -65 && rotation < 0)){
+				gun.transform.eulerAngles = new Vector3(0, 0, rotation);
+				shoulder.transform.eulerAngles = new Vector3(0, 0, rotation*0.25f);
+			}
+		}
+		else if (!facingRight){
+			if ((rotation >= 115 && rotation < 180) || (rotation < -115) && rotation > - 179){
+				gun.transform.eulerAngles = new Vector3(0, 0, -(rotation - 180));
+				shoulder.transform.eulerAngles = new Vector3(0, 0, -(rotation - 180)*0.5f);
+			}
+		}
 	}
 
 
@@ -100,5 +123,4 @@ public class PlayerControl : MonoBehaviour
 
 
 
-	a
 }
