@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public class MonsterDestroyed : BaseEvent { }
+
 public class Enemy : MonoBehaviour
 {
 	public float moveSpeed = 2f;		// The speed the enemy moves at.
@@ -11,6 +13,7 @@ public class Enemy : MonoBehaviour
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
 	private Score score;				// Reference to the Score script.
+
 
 	
 	void Awake()
@@ -94,7 +97,9 @@ public class Enemy : MonoBehaviour
 		Vector3 scorePos;
 		scorePos = transform.position;
 		scorePos.y += 1.5f;
+		Destroy(gameObject);
 
+		EventManager.instance.QueueEvent(new MonsterDestroyed());
 	}
 
 
