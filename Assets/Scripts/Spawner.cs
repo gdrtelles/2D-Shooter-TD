@@ -9,11 +9,11 @@ public class Spawner : MonoBehaviour, IEventListener {
 	public GameObject BossEnemy;
 	
 	
-	public int totalEnemy = 11;
+	public int totalEnemy = 10;
 	public int numEnemy = 0;
 	public int spawnedEnemy = 0;
 	private bool waveSpawn = false;
-	public bool Spawn = true;
+	public bool inACoroutine = false;
 	public float waveTimer = 30.0f;
 	private float nextRound = 0.0f;
 	public int totalWaves = 5;
@@ -25,10 +25,7 @@ public class Spawner : MonoBehaviour, IEventListener {
 	//event listener that starts the coroutine
 	public bool OnMonsterDestroyed(IEvent evt){
 		spawnedEnemy--;
-		if(spawnedEnemy == 0){
-			numRounds++;
-			StartCoroutine("SpawnEnemies");
-		}
+
 		return true;
 	}
 
@@ -37,21 +34,26 @@ public class Spawner : MonoBehaviour, IEventListener {
 	void Start()
 	{
 		EventManager.instance.AddListener(this, "MonsterDestroyed", OnMonsterDestroyed);
-		StartCoroutine("SpawnEnemies");
+		//StartCoroutine("SpawnEnemies");
 	}
 	
 	void Update ()
 	{
-
+		if(spawnedEnemy == 0 && !inACoroutine){
+			StartCoroutine("SpawnEnemies");
+		}
 	}
 	
 	IEnumerator SpawnEnemies(){
-		yield return new WaitForSeconds(10f);
+		inACoroutine = true;
+		yield return new WaitForSeconds(5f);
+		numRounds++;
 		for(int i = 0; i < totalEnemy; i++) {
 			spawnEnemy();
 			nextSpawnTime = Random.Range (spawnMin,spawnMax);
 			yield return new WaitForSeconds(nextSpawnTime);
 		}
+		inACoroutine = false;
 	}
 
 	// spawns an enemy 
