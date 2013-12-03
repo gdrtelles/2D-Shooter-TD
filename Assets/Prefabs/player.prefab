@@ -377,7 +377,7 @@ MonoBehaviour:
   facingRight: 1
   jump: 0
   moveForce: 365
-  maxSpeed: 5
+  maxSpeed: 4
   jumpForce: 500
   gun: {fileID: 100004}
   shoulder: {fileID: 100014}
