@@ -732,12 +732,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 711386874}
   m_GameObject: {fileID: 538237232}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26e8197b97b4a4fa2ab4c51e208a70f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EasyEnemy: {fileID: 100004, guid: 74e433f95b2ffc64cbce5246774e4c7f, type: 2}
+  EasyEnemy: {fileID: 100004, guid: e64c33b733dba43098fc0ace8c0e2e00, type: 2}
   MediumEnemy: {fileID: 0}
   HardEnemy: {fileID: 0}
   BossEnemy: {fileID: 0}
@@ -1003,7 +1003,7 @@ Prefab:
     - target: {fileID: 11400000, guid: bdd88e3de6e024ec1bacd58073808d06, type: 2}
       propertyPath: EasyEnemy
       value: 
-      objectReference: {fileID: 100004, guid: 74e433f95b2ffc64cbce5246774e4c7f, type: 2}
+      objectReference: {fileID: 100004, guid: e64c33b733dba43098fc0ace8c0e2e00, type: 2}
     - target: {fileID: 11400000, guid: bdd88e3de6e024ec1bacd58073808d06, type: 2}
       propertyPath: spawnType
       value: 3
@@ -1022,7 +1022,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: bdd88e3de6e024ec1bacd58073808d06, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bdd88e3de6e024ec1bacd58073808d06, type: 2}
@@ -1690,7 +1690,7 @@ GameObject:
   - 114: {fileID: 1092168829}
   - 58: {fileID: 1092168831}
   m_Layer: 9
-  m_Name: Player
+  m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
