@@ -17,8 +17,10 @@ public class PlayerControl : MonoBehaviour
 
 
 	//private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
-	private Transform groundCheck;			// A position marking where to check if the player is grounded.
+	private Transform groundCheck;
+										// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
+	private bool platform = false;
 	private Animator anim;					// Reference to the player's animator component.
 	private Vector2 mousePos;				// Mouse position for rotating gun.
 	private Camera cam;
@@ -30,6 +32,7 @@ public class PlayerControl : MonoBehaviour
 	void Awake()
 	{
 		// Setting up references.
+
 		groundCheck = transform.Find("groundCheck");
 		anim = GetComponent<Animator>();
 		cam = GameObject.Find ("Main Camera").camera;
@@ -40,15 +43,22 @@ public class PlayerControl : MonoBehaviour
 	{
 		// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
+		platform  =  Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Platform"));  
 
 		// If the jump button is pressed and the player is grounded then the player should jump.
 		if(Input.GetButtonDown("Jump") && grounded)
+		{
 			jump = true;
+		}
+		else if(Input.GetButtonDown("Jump") && platform)
+		{
+			jump = true;
+		}
 
 		//Gun rotation.
 		mousePos = cam.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
 		float rotation = Mathf.Atan2((mousePos.y - gun.transform.position.y), (mousePos.x - gun.transform.position.x)) * Mathf.Rad2Deg;
-		Debug.Log (rotation);
+		//Debug.Log (rotation);
 		if(facingRight){ 
 			if((rotation <= 65 && rotation > 0) || (rotation >= -65 && rotation < 0)){
 				gun.transform.eulerAngles = new Vector3(0, 0, rotation);
