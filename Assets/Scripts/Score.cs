@@ -4,7 +4,6 @@ using System.Collections;
 public class Score : MonoBehaviour
 {
 	public int score = 0;					// The player's score.
-	public int round = 0;
 
 
 	private PlayerControl playerControl;	// Reference to the player control script.
@@ -21,8 +20,7 @@ public class Score : MonoBehaviour
 	void Update ()
 	{
 		// Set the score text.
-		guiText.text = "Score:  " + score + "\nRound: " + round;
-
+		guiText.text = "Score: " + score;
 
 	
 	}
