@@ -403,7 +403,6 @@ Prefab:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 --- !u!1 &376072368
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,8 +599,6 @@ Transform:
 >>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
 =======
 >>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
-=======
->>>>>>> parent of dccbf81... fixed monster collision with platforms
 =======
 >>>>>>> parent of dccbf81... fixed monster collision with platforms
 --- !u!1 &394458393
@@ -961,7 +958,6 @@ MonoBehaviour:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 --- !u!1 &594097524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,8 +1068,6 @@ SpriteRenderer:
 >>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
 =======
 >>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
-=======
->>>>>>> parent of dccbf81... fixed monster collision with platforms
 =======
 >>>>>>> parent of dccbf81... fixed monster collision with platforms
 --- !u!1 &608049204
@@ -1412,7 +1406,6 @@ Prefab:
   m_IsExploded: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 --- !u!1001 &760296249
 Prefab:
   m_ObjectHideFlags: 0
@@ -1586,8 +1579,6 @@ Transform:
 >>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
 =======
 >>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
-=======
->>>>>>> parent of dccbf81... fixed monster collision with platforms
 =======
 >>>>>>> parent of dccbf81... fixed monster collision with platforms
 --- !u!1001 &783705630
