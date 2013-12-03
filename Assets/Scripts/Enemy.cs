@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
 	public int HP = 2;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged
+	public GameObject ARPickup;
+	public GameObject shotgunPickup;
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
@@ -100,6 +102,17 @@ public class Enemy : MonoBehaviour
 		Destroy(gameObject);
 
 		EventManager.instance.QueueEvent(new MonsterDestroyed());
+		/*
+		//Possibly drop new weapon
+		if(Random.Range (0, 2) == 1){
+			if(Random.Range(0, 2)== 0){
+				Rigidbody2D AR = Instantiate (ARPickup, this.transform.position, Quaternion.Euler(new Vector3(0,0,0))) as Rigidbody2D;
+			}
+			else {
+				Rigidbody2D shotgun = Instantiate (shotgunPickup, this.transform.position, Quaternion.Euler(new Vector3(0,0,0))) as Rigidbody2D;
+			}
+		}
+		*/
 	}
 
 
@@ -110,4 +123,5 @@ public class Enemy : MonoBehaviour
 		enemyScale.x *= -1;
 		transform.localScale = enemyScale;
 	}
+
 }

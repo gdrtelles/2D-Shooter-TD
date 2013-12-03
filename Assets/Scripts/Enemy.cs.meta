@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: ef474d77e998d4890bff85103fb4c947
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - deadEnemy: {instanceID: 0}
+  - damagedEnemy: {instanceID: 0}
+  - ARPickup: {fileID: 100000, guid: f7e24c8df0decf3448cf8a62efbb1592, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

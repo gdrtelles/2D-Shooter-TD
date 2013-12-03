@@ -15,6 +15,7 @@ public class Gun : MonoBehaviour
 	private PlayerControl playerCtrl;		// Reference to the PlayerControl script.
 	private Animator anim;					// Reference to the Animator component.
 	private WeaponType currWT;
+	//private int shot
 	
 	
 	void Awake()
@@ -32,7 +33,10 @@ public class Gun : MonoBehaviour
 	
 	void Update ()
 	{
-		if(Input.GetButtonDown("Fire1"))
+		if(currWT == WeaponType.AR && Input.GetButton("Fire1")){
+			fireWeapon();
+		}
+		else if(Input.GetButtonDown("Fire1"))
 		{
 			fireWeapon();
 			/*
@@ -58,6 +62,9 @@ public class Gun : MonoBehaviour
 				bulletInstance.velocity = new Vector2(-1*speed * (fireDirection.x), speed * (fireDirection.y));
 			}
 			*/
+		}
+		if(Input.GetKeyDown(KeyCode.G)){
+			cycleWeapon();
 		}
 	}
 	
@@ -134,6 +141,24 @@ public class Gun : MonoBehaviour
 	}
 	
 	float randFloatGen(){
-		return Random.Range (0.6f, 1.0f);
+		return Random.Range (0.5f, 1.0f);
+	}
+
+	void cycleWeapon(){
+		if(currWT == WeaponType.AR){
+			currWT = WeaponType.SHOTGUN;
+		}
+		else{
+			currWT = WeaponType.AR;
+		}
+	}
+
+	public void setWeapon(int weapon){
+		if(weapon == 0){
+			currWT = WeaponType.AR;
+		}
+		else if(weapon == 1){
+			currWT = WeaponType.SHOTGUN;
+		}
 	}
 }
