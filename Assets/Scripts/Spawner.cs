@@ -17,11 +17,10 @@ public class Spawner : MonoBehaviour, IEventListener {
 	public float waveTimer = 30.0f;
 	private float nextRound = 0.0f;
 	public int totalWaves = 5;
-	//public int numRounds = 0;
+	public int numRounds = 0;
 	public float spawnMin = 1.0f;
 	public float spawnMax = 3.0f;
 	public float nextSpawnTime = 0.0f;
-	private Score round;				// Reference to the Score script.
 
 	//event listener that starts the coroutine
 	public bool OnMonsterDestroyed(IEvent evt){
@@ -31,13 +30,6 @@ public class Spawner : MonoBehaviour, IEventListener {
 	}
 
 	public bool HandleEvent(IEvent evt) { return false; }
-
-	void Awake()
-	{
-		// Setting up the references.
-	
-		round = GameObject.Find("Score").GetComponent<Score>();
-	}
 
 	void Start()
 	{
@@ -55,7 +47,7 @@ public class Spawner : MonoBehaviour, IEventListener {
 	IEnumerator SpawnEnemies(){
 		inACoroutine = true;
 		yield return new WaitForSeconds(5f);
-		round.round++;
+		numRounds++;
 		for(int i = 0; i < totalEnemy; i++) {
 			spawnEnemy();
 			nextSpawnTime = Random.Range (spawnMin,spawnMax);
@@ -73,5 +65,13 @@ public class Spawner : MonoBehaviour, IEventListener {
 		numEnemy++;
 		spawnedEnemy++;
 	}
-
+	
+	// returns the current round
+	public float currentRound
+	{
+		get
+		{
+			return numRounds;
+		}
+	}
 }
