@@ -503,6 +503,7 @@ Prefab:
   m_IsPrefabParent: 0
   m_IsExploded: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &376072368
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,6 +531,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 956802945}
 =======
+=======
+>>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
 --- !u!1 &175134881
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +696,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 175134882}
+<<<<<<< HEAD
+>>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
+=======
 >>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
 --- !u!1 &394458393
 GameObject:
@@ -1104,6 +1110,7 @@ MonoBehaviour:
   spawnMax: 3
   nextSpawnTime: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &594097524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1138,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 956802945}
 =======
+=======
+>>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
 --- !u!1 &544474150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,6 +1217,9 @@ SpriteRenderer:
   m_SortingLayerID: 2511236001
   m_Sprite: {fileID: 21300006, guid: 6822a86cbc1300c4fbc9ae600cfd5f90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< HEAD
+>>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
+=======
 >>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
 --- !u!1 &608049204
 GameObject:
@@ -1647,7 +1659,10 @@ Prefab:
   m_RootGameObject: {fileID: 1092168825}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
 --- !u!1 &739129816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,6 +1776,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
+>>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
+=======
 >>>>>>> dccbf8180eb82b7a3244a5cc7e7c2d53bca3ccc4
 --- !u!1001 &783705630
 Prefab:
