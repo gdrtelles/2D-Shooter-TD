@@ -21,6 +21,10 @@ public class Spawner : MonoBehaviour, IEventListener {
 	public float spawnMin = 1.0f;
 	public float spawnMax = 3.0f;
 	public float nextSpawnTime = 0.0f;
+	private Score Round;				// Reference to the Score script.
+	private Transform player;
+	private Vector2 offset;
+	public float distance = 15;
 
 	//event listener that starts the coroutine
 	public bool OnMonsterDestroyed(IEvent evt){
@@ -30,6 +34,13 @@ public class Spawner : MonoBehaviour, IEventListener {
 	}
 
 	public bool HandleEvent(IEvent evt) { return false; }
+
+	void Awake()
+	{
+		Round = GameObject.Find("Score").GetComponent<Score>();
+		// Setting up the reference.
+		player = GameObject.FindGameObjectWithTag("Player").transform;
+	}
 
 	void Start()
 	{
@@ -47,7 +58,9 @@ public class Spawner : MonoBehaviour, IEventListener {
 	IEnumerator SpawnEnemies(){
 		inACoroutine = true;
 		yield return new WaitForSeconds(5f);
-		numRounds++;
+		Round.round++;
+		totalEnemy += 5;
+		spawnMax -= 0.25f;
 		for(int i = 0; i < totalEnemy; i++) {
 			spawnEnemy();
 			nextSpawnTime = Random.Range (spawnMin,spawnMax);
@@ -59,19 +72,15 @@ public class Spawner : MonoBehaviour, IEventListener {
 	// spawns an enemy 
 	private void spawnEnemy()
 	{
-		Instantiate(EasyEnemy, transform.position, transform.rotation);
+		float randomizer = Mathf.Sign(Random.Range(-1.0f,1.0f));
+		distance = distance * randomizer;
+		offset = new Vector2 (player.position.x - distance , transform.position.y);
+		Instantiate(EasyEnemy, offset, transform.rotation);
 
 		// Increase the total number of enemies spawned and the number of spawned enemies
 		numEnemy++;
 		spawnedEnemy++;
 	}
 	
-	// returns the current round
-	public float currentRound
-	{
-		get
-		{
-			return numRounds;
-		}
-	}
+
 }

@@ -253,7 +253,7 @@ GameObject:
   - 114: {fileID: 142772419}
   - 61: {fileID: 142772418}
   - 212: {fileID: 142772417}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   - 114: {fileID: 144587032}
   - 61: {fileID: 144587031}
   - 212: {fileID: 144587034}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   - 114: {fileID: 433719754}
   - 61: {fileID: 433719753}
   - 212: {fileID: 433719752}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -721,7 +721,7 @@ Transform:
   m_PrefabInternal: {fileID: 711386874}
   m_GameObject: {fileID: 538237232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.83601952, y: 8.41896343, z: 0}
+  m_LocalPosition: {x: 9.32295895, y: 7.36188889, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -751,6 +751,7 @@ MonoBehaviour:
   spawnMin: 1
   spawnMax: 3
   nextSpawnTime: 0
+  distance: 15
 --- !u!1 &608049204
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,7 +763,7 @@ GameObject:
   - 114: {fileID: 608049207}
   - 61: {fileID: 608049206}
   - 212: {fileID: 608049205}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -841,7 +842,7 @@ GameObject:
   - 114: {fileID: 648888811}
   - 61: {fileID: 648888810}
   - 212: {fileID: 648888813}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -976,7 +977,7 @@ GameObject:
   m_Layer: 0
   m_Name: FlechSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1000,11 +1001,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: bdd88e3de6e024ec1bacd58073808d06, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.83601952
+      value: 9.32295895
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bdd88e3de6e024ec1bacd58073808d06, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 8.41896343
+      value: 7.36188889
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bdd88e3de6e024ec1bacd58073808d06, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1341,7 +1342,7 @@ GameObject:
   - 114: {fileID: 946226035}
   - 61: {fileID: 946226034}
   - 212: {fileID: 946226033}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -1498,7 +1499,7 @@ GameObject:
   - 114: {fileID: 1026322067}
   - 61: {fileID: 1026322066}
   - 212: {fileID: 1026322069}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -1724,7 +1725,7 @@ GameObject:
   - 114: {fileID: 1092168829}
   - 58: {fileID: 1092168831}
   m_Layer: 9
-  m_Name: player
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1889,7 +1890,7 @@ GameObject:
   m_Layer: 0
   m_Name: FlechSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2022,7 +2023,7 @@ GameObject:
   m_Layer: 0
   m_Name: BulletSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2206,7 +2207,7 @@ GameObject:
   - 114: {fileID: 1594000792}
   - 61: {fileID: 1594000791}
   - 212: {fileID: 1594000794}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -2285,7 +2286,7 @@ GameObject:
   m_Layer: 0
   m_Name: FlechSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2367,7 +2368,7 @@ GameObject:
   - 114: {fileID: 1701414950}
   - 61: {fileID: 1701414949}
   - 212: {fileID: 1701414951}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -2446,7 +2447,7 @@ GameObject:
   - 114: {fileID: 1715441579}
   - 61: {fileID: 1715441578}
   - 212: {fileID: 1715441581}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -2525,7 +2526,7 @@ GameObject:
   - 114: {fileID: 1797076455}
   - 61: {fileID: 1797076454}
   - 212: {fileID: 1797076453}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -2604,7 +2605,7 @@ GameObject:
   - 114: {fileID: 1843640648}
   - 61: {fileID: 1843640647}
   - 212: {fileID: 1843640646}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -2701,6 +2702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  round: 0
 --- !u!132 &1860465217
 GUIText:
   m_ObjectHideFlags: 0
@@ -2710,14 +2712,14 @@ GUIText:
   m_Enabled: 1
   serializedVersion: 3
   m_Text: Score
-  m_Anchor: 1
-  m_Alignment: 1
-  m_PixelOffset: {x: 0, y: 0}
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: -450, y: -12.0200005}
   m_LineSpacing: 1
   m_TabSize: 4
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Material: {fileID: 0}
-  m_FontSize: 80
+  m_FontSize: 30
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
@@ -2844,7 +2846,7 @@ GameObject:
   - 114: {fileID: 1876103947}
   - 61: {fileID: 1876103946}
   - 212: {fileID: 1876103945}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -2974,7 +2976,7 @@ GameObject:
   - 114: {fileID: 2016148301}
   - 61: {fileID: 2016148300}
   - 212: {fileID: 2016148303}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: platform
   m_TagString: ground
   m_Icon: {fileID: 0}

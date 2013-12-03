@@ -372,10 +372,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef474d77e998d4890bff85103fb4c947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: -2
+  moveSpeed: -4
   HP: 4
   deadEnemy: {fileID: 0}
   damagedEnemy: {fileID: 0}
+  xDistance: 1
+  yDistance: 1
+  facingRight: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

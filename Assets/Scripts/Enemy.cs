@@ -5,44 +5,59 @@ public class MonsterDestroyed : BaseEvent { }
 
 public class Enemy : MonoBehaviour
 {
-	public float moveSpeed = 2f;		// The speed the enemy moves at.
+	public float moveSpeed = 4f;		// The speed the enemy moves at.
 	public int HP = 2;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
-	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
+	//private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
 	private Score score;				// Reference to the Score script.
-
+	private Transform player;			// Reference to the player's transform.
+	public float xDistance = 2f;
+	public float yDistance = 1f;
+	public bool facingRight = true;	
 
 	
 	void Awake()
 	{
 		// Setting up the references.
 		ren = transform.Find("body").GetComponent<SpriteRenderer>();
-		frontCheck = transform.Find("frontCheck").transform;
+		//frontCheck = transform.Find("frontCheck").transform;
 		score = GameObject.Find("Score").GetComponent<Score>();
+
+		// Setting up the reference.
+		player = GameObject.FindGameObjectWithTag("Player").transform;
+
+
+	}
+
+	
+	bool CheckXDistance()
+	{
+		// Returns true if the distance between the enemy and the player in the x axis is greater than the x distance.
+		return Mathf.Abs(transform.position.x - player.position.x) > xDistance;
+	}
+	
+	
+	bool CheckYDistance()
+	{
+		// Returns true if the distance between the enemy and the player in the y axis is greater than the y distance.
+		return Mathf.Abs(transform.position.y - player.position.y) > yDistance;
+	}
+
+	float CheckDirection()
+	{
+		return Mathf.Sign(transform.position.x - player.position.x);
+
 	}
 
 	void FixedUpdate ()
 	{
-		// Create an array of all the colliders in front of the enemy.
-		Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
 
-		// Check each of the colliders.
-		foreach(Collider2D c in frontHits)
-		{
-			// If any of the colliders is an Obstacle...
-			if(c.tag == "Obstacle")
-			{
-				// ... Flip the enemy and stop checking the other colliders.
-				Flip ();
-				break;
-			}
-		}
+		TrackPlayer();
 
-		// Set the enemy's velocity to moveSpeed in the x direction.
-		rigidbody2D.velocity = new Vector2(transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
+
 
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
 		//if(HP == 1 && damagedEnemy != null)
@@ -53,6 +68,27 @@ public class Enemy : MonoBehaviour
 		if(HP <= 0 && !dead)
 			// ... call the death function.
 			Death ();
+	}
+
+	void TrackPlayer ()
+	{	
+		// checks to see if the player is far away from the enemy if so makes the enemy close the gap
+		if(CheckXDistance())
+		{
+
+			if(CheckDirection() > 0 && !facingRight)
+			{
+				Flip();
+				moveSpeed = -moveSpeed;
+			}
+			else if(CheckDirection() < 0 && facingRight)
+			{
+				Flip();
+				moveSpeed = -moveSpeed;
+			}
+			// Set the enemy's velocity to moveSpeed in the x direction.
+			rigidbody2D.velocity = new Vector2(transform.localScale.x *( moveSpeed * CheckDirection()), rigidbody2D.velocity.y);	
+		}
 	}
 	
 	public void Hurt()
@@ -105,6 +141,7 @@ public class Enemy : MonoBehaviour
 
 	public void Flip()
 	{
+		facingRight = !facingRight;
 		// Multiply the x component of localScale by -1.
 		Vector3 enemyScale = transform.localScale;
 		enemyScale.x *= -1;

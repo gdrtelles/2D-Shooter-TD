@@ -19,6 +19,7 @@ public class PlayerControl : MonoBehaviour
 	//private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
+	private bool onPlatform = false;
 	private Animator anim;					// Reference to the player's animator component.
 	private Vector2 mousePos;				// Mouse position for rotating gun.
 	private Camera cam;
@@ -39,11 +40,18 @@ public class PlayerControl : MonoBehaviour
 	void Update()
 	{
 		// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
-		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
+		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")); 
+		onPlatform = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Platform")); 
 
 		// If the jump button is pressed and the player is grounded then the player should jump.
 		if(Input.GetButtonDown("Jump") && grounded)
+		{
 			jump = true;
+		}
+		else if(Input.GetButtonDown("Jump") && onPlatform)
+		{
+			jump = true;
+		}
 
 		//Gun rotation.
 		mousePos = cam.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
@@ -63,6 +71,13 @@ public class PlayerControl : MonoBehaviour
 		}
 	}
 
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		if(col.gameObject.tag == "Enemy")
+			Application.LoadLevel("gameOver");
+
+
+	}
 
 	void FixedUpdate ()
 	{
