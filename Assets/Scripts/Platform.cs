@@ -1,11 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-/*
- * Some simple code for One Way (cloud) Platforms.
- * USAGE: works with horizontal platforms that only the player will stand on.
- * Platform pivot should be where the player can stand. Player pivot should be at the player's feet.
- * <3 - @x01010111
- */
+
 
 public class Platform : MonoBehaviour {
 	
