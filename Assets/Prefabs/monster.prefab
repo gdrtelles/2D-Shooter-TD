@@ -418,6 +418,8 @@ MonoBehaviour:
   xDistance: 1
   yDistance: 1
   facingRight: 1
+  ARPickup: {fileID: 100000, guid: 9c6a86f4bc6ee0a48ad6014862dcc58b, type: 2}
+  shotgunPickup: {fileID: 100000, guid: 47c4c654ff4f9724582f119ee902ce91, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

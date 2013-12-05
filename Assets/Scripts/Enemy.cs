@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
 	public float xDistance = 2f;
 	public float yDistance = 1f;
 	public bool facingRight = true;	
+	public GameObject ARPickup;
+	public GameObject shotgunPickup;
 
 	
 	
@@ -149,6 +151,20 @@ public class Enemy : MonoBehaviour
 		Vector3 scorePos;
 		scorePos = transform.position;
 		scorePos.y += 1.5f;
+
+		//Possibly drop new weapon
+		if(Random.Range (0, 20) == 1){
+			if(Random.Range(0, 2)== 1){
+				GameObject AR = (GameObject)Instantiate (ARPickup, this.transform.position, Quaternion.Euler(new Vector3(0,0,0)));
+				AR.GetComponent<WeaponPickup>().setWTPickup(0);
+			}
+			else {
+				GameObject shotgun = (GameObject)Instantiate (shotgunPickup, this.transform.position, Quaternion.Euler(new Vector3(0,0,0)));
+				shotgun.GetComponent<WeaponPickup>().setWTPickup(2);
+			}
+		}
+
+
 		Destroy(gameObject);
 
 		EventManager.instance.QueueEvent(new MonsterDestroyed());

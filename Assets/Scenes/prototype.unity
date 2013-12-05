@@ -644,6 +644,57 @@ Prefab:
   m_RootGameObject: {fileID: 1921348426}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &360137223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: c7f30b7337dd4e143be3711fcaf485ef, type: 2}
+  m_PrefabInternal: {fileID: 1635731844}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 360137225}
+  - 132: {fileID: 360137224}
+  m_Layer: 0
+  m_Name: AmmoCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!132 &360137224
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13200000, guid: c7f30b7337dd4e143be3711fcaf485ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 1635731844}
+  m_GameObject: {fileID: 360137223}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: 0/0
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 30
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_PixelCorrect: 1
+  m_RichText: 1
+--- !u!4 &360137225
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: c7f30b7337dd4e143be3711fcaf485ef, type: 2}
+  m_PrefabInternal: {fileID: 1635731844}
+  m_GameObject: {fileID: 360137223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .0536971092, y: .877734184, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &394458393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,7 +1894,7 @@ MonoBehaviour:
   SHOTGUN_ROUNDS: 4
   SHOTGUN_CLIPS: 4
   SHOTGUN_RELOADSPEED: 2.5
-  ammoCounter: {fileID: 0}
+  ammoCounter: {fileID: 360137224}
   bullet: {fileID: 5000000, guid: ea4d0f6957fb4e543881b8cdefa678ee, type: 2}
   speed: 30
   bulletSpawner: {fileID: 1528326158}
@@ -2689,6 +2740,50 @@ SpriteRenderer:
   m_SortingLayerID: 1024582385
   m_Sprite: {fileID: 21300000, guid: b2938c8f1277c8f469f8b298e9cb165c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1001 &1635731844
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: c7f30b7337dd4e143be3711fcaf485ef, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: .00557804108
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c7f30b7337dd4e143be3711fcaf485ef, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .829614639
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c7f30b7337dd4e143be3711fcaf485ef, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c7f30b7337dd4e143be3711fcaf485ef, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c7f30b7337dd4e143be3711fcaf485ef, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c7f30b7337dd4e143be3711fcaf485ef, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c7f30b7337dd4e143be3711fcaf485ef, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c7f30b7337dd4e143be3711fcaf485ef, type: 2}
+      propertyPath: m_Name
+      value: AmmoCounter
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c7f30b7337dd4e143be3711fcaf485ef, type: 2}
+  m_RootGameObject: {fileID: 360137223}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1672032958
 GameObject:
   m_ObjectHideFlags: 0
@@ -3554,6 +3649,8 @@ MonoBehaviour:
   xDistance: 1
   yDistance: 1
   facingRight: 1
+  ARPickup: {fileID: 100000, guid: 9c6a86f4bc6ee0a48ad6014862dcc58b, type: 2}
+  shotgunPickup: {fileID: 100000, guid: 47c4c654ff4f9724582f119ee902ce91, type: 2}
 --- !u!95 &1921348430
 Animator:
   serializedVersion: 2
