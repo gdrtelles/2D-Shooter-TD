@@ -6,15 +6,31 @@ enum WeaponType { AR, PISTOL, SHOTGUN};
 
 public class Gun : MonoBehaviour
 {
+	public float AR_RoF = 0.15f;
+	public int AR_ROUNDS = 40;
+	public int AR_CLIPS = 4;
+	public float AR_RELOADSPEED = 3.0f;
+	public float SHOTGUN_RoF = 0.6f;
+	public int SHOTGUN_ROUNDS = 4;
+	public int SHOTGUN_CLIPS = 4;
+	public float SHOTGUN_RELOADSPEED = 2.5f;
+	//public float PISTOL_RoF = 0.2f;
+	//public int PISTOL_ROUNDS = 7;
+
+	public GUIText ammoCounter;
 	public Rigidbody2D bullet;				// Prefab of the rocket.
 	public float speed = 20f;				// The speed the rocket will fire at.
 	public Transform bulletSpawner;			// Where the bullets spawn.
 	public Transform[] flechetteSpawner;
-	public float fireRate;
 	
 	private PlayerControl playerCtrl;		// Reference to the PlayerControl script.
 	private Animator anim;					// Reference to the Animator component.
 	private WeaponType currWT;
+	private int rounds;
+	private int clips;
+	private float fireRate;
+	private float reloadSpeed;
+	private bool canFire;
 	//private int shot
 	
 	
@@ -23,20 +39,17 @@ public class Gun : MonoBehaviour
 		// Setting up the references.
 		anim = transform.root.gameObject.GetComponent<Animator>();
 		playerCtrl = transform.root.GetComponent<PlayerControl>();
-		currWT = WeaponType.SHOTGUN;
-		//flechetteSpawner = new Transform[3];
-		/*for (int i = 0; i < flechetteSpawner.Length; i++) {
-			flechetteSpawner[i] = GameObject.Find ("
-		}*/
+		setWeapon(0);
+		canFire = true;
 	}
 	
 	
 	void Update ()
 	{
-		if(currWT == WeaponType.AR && Input.GetButton("Fire1")){
+		if(currWT == WeaponType.AR && Input.GetButton("Fire1") && canFire == true){
 			fireWeapon();
 		}
-		else if(Input.GetButtonDown("Fire1"))
+		else if(Input.GetButtonDown("Fire1") && canFire == true)
 		{
 			fireWeapon();
 			/*
@@ -72,7 +85,7 @@ public class Gun : MonoBehaviour
 		Vector2 fireDirection;
 		fireDirection.x = Mathf.Cos((this.transform.eulerAngles.z) * Mathf.Deg2Rad);
 		fireDirection.y = Mathf.Sin((this.transform.eulerAngles.z) * Mathf.Deg2Rad);
-		
+		canFire = false;
 		switch(currWT){
 		case WeaponType.AR:
 			// ... set the animator Shoot trigger parameter and play the audioclip.
@@ -133,6 +146,7 @@ public class Gun : MonoBehaviour
 			}
 			break;
 		}
+		ammoCount();
 	}
 	
 	int randIntGen(){
@@ -146,19 +160,62 @@ public class Gun : MonoBehaviour
 
 	void cycleWeapon(){
 		if(currWT == WeaponType.AR){
-			currWT = WeaponType.SHOTGUN;
+			setWeapon (1);
 		}
 		else{
-			currWT = WeaponType.AR;
+			setWeapon(0);
 		}
 	}
 
 	public void setWeapon(int weapon){
 		if(weapon == 0){
 			currWT = WeaponType.AR;
+			fireRate = AR_RoF;
+			rounds = AR_ROUNDS;
+			clips = AR_CLIPS;
+			reloadSpeed = AR_RELOADSPEED;
 		}
 		else if(weapon == 1){
 			currWT = WeaponType.SHOTGUN;
+			fireRate = SHOTGUN_RoF;
+			rounds = SHOTGUN_ROUNDS;
+			clips = SHOTGUN_CLIPS;
+			reloadSpeed = SHOTGUN_RELOADSPEED;
 		}
+		setAmmoCounter();
+	}
+
+	void enableFire(){
+		canFire = true;
+	}
+
+	void ammoCount(){
+		if(rounds > 0){ 
+			rounds--;
+			setAmmoCounter();
+			Invoke("enableFire", fireRate);
+		}
+		else if(rounds == 0 && clips > 0){ 
+			clips--; 
+			Invoke ("reloadWeapon", reloadSpeed);
+		}
+		else { setAmmoCounter(); canFire = false;}
+	}
+	
+	void reloadWeapon(){
+		switch(currWT){
+		case WeaponType.AR:
+			rounds = AR_ROUNDS;
+			break;
+		case WeaponType.SHOTGUN:
+			rounds = SHOTGUN_ROUNDS;
+			break;
+		}
+		setAmmoCounter();
+		canFire = true;
+	}
+
+	void setAmmoCounter(){
+		ammoCounter.text = rounds + "/" + clips;
 	}
 }

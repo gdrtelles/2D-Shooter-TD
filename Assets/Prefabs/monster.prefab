@@ -377,6 +377,7 @@ MonoBehaviour:
   deadEnemy: {fileID: 0}
   damagedEnemy: {fileID: 0}
   ARPickup: {fileID: 100000, guid: f7e24c8df0decf3448cf8a62efbb1592, type: 2}
+  shotgunPickup: {fileID: 100000, guid: d9344ecc6d445224686dcbc30ad90523, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

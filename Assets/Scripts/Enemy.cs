@@ -11,12 +11,11 @@ public class Enemy : MonoBehaviour
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged
 	public GameObject ARPickup;
 	public GameObject shotgunPickup;
+
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
 	private Score score;				// Reference to the Score script.
-
-
 	
 	void Awake()
 	{
@@ -99,20 +98,23 @@ public class Enemy : MonoBehaviour
 		Vector3 scorePos;
 		scorePos = transform.position;
 		scorePos.y += 1.5f;
+
+		//Possibly drop new weapon
+		if(Random.Range (0, 20) == 1){
+			if(Random.Range(0, 2)== 1){
+				GameObject AR = (GameObject)Instantiate (ARPickup, this.transform.position, Quaternion.Euler(new Vector3(0,0,0)));
+				AR.GetComponent<WeaponPickup>().setWTPickup(0);
+			}
+			else {
+				GameObject shotgun = (GameObject)Instantiate (shotgunPickup, this.transform.position, Quaternion.Euler(new Vector3(0,0,0)));
+				shotgun.GetComponent<WeaponPickup>().setWTPickup(2);
+			}
+		}
+
 		Destroy(gameObject);
 
 		EventManager.instance.QueueEvent(new MonsterDestroyed());
-		/*
-		//Possibly drop new weapon
-		if(Random.Range (0, 2) == 1){
-			if(Random.Range(0, 2)== 0){
-				Rigidbody2D AR = Instantiate (ARPickup, this.transform.position, Quaternion.Euler(new Vector3(0,0,0))) as Rigidbody2D;
-			}
-			else {
-				Rigidbody2D shotgun = Instantiate (shotgunPickup, this.transform.position, Quaternion.Euler(new Vector3(0,0,0))) as Rigidbody2D;
-			}
-		}
-		*/
+
 	}
 
 
