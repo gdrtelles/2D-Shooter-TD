@@ -55,16 +55,24 @@ public class PlayerControl : MonoBehaviour
 
 		//Gun rotation.
 		mousePos = cam.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+		if(transform.position.x < mousePos.x && !facingRight)
+		{
+			Flip();
+		}
+		else if ( transform.position.x > mousePos.x && facingRight)
+		{
+			Flip();
+		}
 		float rotation = Mathf.Atan2((mousePos.y - gun.transform.position.y), (mousePos.x - gun.transform.position.x)) * Mathf.Rad2Deg;
 		Debug.Log (rotation);
 		if(facingRight){ 
-			if((rotation <= 65 && rotation > 0) || (rotation >= -65 && rotation < 0)){
+			if((rotation <= 90 && rotation > 0) || (rotation >= -90 && rotation < 0)){
 				gun.transform.eulerAngles = new Vector3(0, 0, rotation);
 				shoulder.transform.eulerAngles = new Vector3(0, 0, rotation*0.25f);
 			}
 		}
 		else if (!facingRight){
-			if ((rotation >= 115 && rotation < 180) || (rotation < -115) && rotation > - 179){
+			if ((rotation >= 90 && rotation < 180) || (rotation < -90) && rotation > - 179){
 				gun.transform.eulerAngles = new Vector3(0, 0, -(rotation - 180));
 				shoulder.transform.eulerAngles = new Vector3(0, 0, -(rotation - 180)*0.5f);
 			}
@@ -97,15 +105,7 @@ public class PlayerControl : MonoBehaviour
 			// ... set the player's velocity to the maxSpeed in the x axis.
 			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
 
-		// If the input is moving the player right and the player is facing left...
-		if(h > 0 && !facingRight)
-			// ... flip the player.
-			Flip();
-		// Otherwise if the input is moving the player left and the player is facing right...
-		else if(h < 0 && facingRight)
-			// ... flip the player.
-			Flip();
-
+	
 		// If the player should jump...
 		if(jump)
 		{

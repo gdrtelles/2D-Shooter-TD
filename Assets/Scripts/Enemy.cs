@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
 	public bool facingRight = true;	
 
 	
+	
 	void Awake()
 	{
 		// Setting up the references.
@@ -30,12 +31,14 @@ public class Enemy : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 
 
+
 	}
 
 	
 	bool CheckXDistance()
 	{
 		// Returns true if the distance between the enemy and the player in the x axis is greater than the x distance.
+
 		return Mathf.Abs(transform.position.x - player.position.x) > xDistance;
 	}
 	
@@ -52,13 +55,26 @@ public class Enemy : MonoBehaviour
 
 	}
 
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		if(col.gameObject.tag == "Obstacle" && rigidbody2D.velocity.y == 0f)
+		{
+			rigidbody2D.AddForce(new Vector2(0f, 500f));
+		}
+	
+		
+	}
+
+
 	void FixedUpdate ()
 	{
 
+		if(rigidbody2D.velocity.y > 12f)
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, transform.localScale.y * 0);
+
 		TrackPlayer();
 
-
-
+	
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
 		//if(HP == 1 && damagedEnemy != null)
 			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.

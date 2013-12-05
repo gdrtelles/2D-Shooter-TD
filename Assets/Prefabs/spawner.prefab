@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: -1003283189, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -44,13 +44,15 @@ MonoBehaviour:
   BossEnemy: {fileID: 0}
   totalEnemy: 10
   numEnemy: 0
-  Spawn: 1
+  spawnedEnemy: 0
+  inACoroutine: 0
   waveTimer: 30
   totalWaves: 5
   numRounds: 0
   spawnMin: 1
-  spawnMax: 3
+  spawnMax: 2
   nextSpawnTime: 0
+  distance: 15
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
