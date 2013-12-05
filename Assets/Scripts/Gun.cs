@@ -183,6 +183,7 @@ public class Gun : MonoBehaviour
 			reloadSpeed = SHOTGUN_RELOADSPEED;
 		}
 		setAmmoCounter();
+		canFire = true;
 	}
 
 	void enableFire(){
