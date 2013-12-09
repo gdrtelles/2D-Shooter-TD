@@ -2181,7 +2181,6 @@ MonoBehaviour:
   jumpForce: 500
   gun: {fileID: 69211001}
   shoulder: {fileID: 588716325}
-  kongAPI: {fileID: 1297550475}
 --- !u!95 &1063073880
 Animator:
   serializedVersion: 2
@@ -2504,7 +2503,6 @@ MonoBehaviour:
   jumpForce: 500
   gun: {fileID: 956802944}
   shoulder: {fileID: 1571947372}
-  kongAPI: {fileID: 1297550475}
 --- !u!95 &1092168830
 Animator:
   serializedVersion: 2
