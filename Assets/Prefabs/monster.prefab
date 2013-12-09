@@ -432,6 +432,7 @@ MonoBehaviour:
   facingRight: 1
   ARPickup: {fileID: 100000, guid: 9c6a86f4bc6ee0a48ad6014862dcc58b, type: 2}
   shotgunPickup: {fileID: 100000, guid: 47c4c654ff4f9724582f119ee902ce91, type: 2}
+  pistolPickup: {fileID: 100000, guid: cfe4a890ed14a3a4aa15bf31709e9e4e, type: 2}
   jumpingBug: {fileID: 100010, guid: 60d1d903ef32a0e43aecc7b579d7ec41, type: 2}
   monster: {fileID: 100004}
 --- !u!212 &21200000

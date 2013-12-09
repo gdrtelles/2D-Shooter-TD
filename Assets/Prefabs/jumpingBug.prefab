@@ -284,8 +284,9 @@ MonoBehaviour:
   xDistance: 2
   yDistance: 1
   facingRight: 1
-  ARPickup: {fileID: 0}
-  shotgunPickup: {fileID: 0}
+  ARPickup: {fileID: 100000, guid: 9c6a86f4bc6ee0a48ad6014862dcc58b, type: 2}
+  shotgunPickup: {fileID: 100000, guid: 47c4c654ff4f9724582f119ee902ce91, type: 2}
+  pistolPickup: {fileID: 100000, guid: cfe4a890ed14a3a4aa15bf31709e9e4e, type: 2}
   jumpingBug: {fileID: 100010}
   monster: {fileID: 100004, guid: e64c33b733dba43098fc0ace8c0e2e00, type: 2}
 --- !u!212 &21200000

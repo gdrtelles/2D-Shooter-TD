@@ -29,6 +29,16 @@ public class WeaponPickup : MonoBehaviour {
 				col.collider.gameObject.GetComponentInChildren<Gun>().setWeapon(1);
 				Destroy (this.gameObject);
 			}
+			else if(WTPickup == WeaponPickupType.PISTOL){
+				if(col.collider.gameObject.GetComponentInChildren<Gun>().getCurrWT() == WeaponType.PISTOL
+				   || col.collider.gameObject.GetComponentInChildren<Gun>().getCurrWT() == WeaponType.DUAL_PISTOL){
+					col.collider.gameObject.GetComponentInChildren<Gun>().setWeapon(3);
+				}
+				else {
+					col.collider.gameObject.GetComponentInChildren<Gun>().setWeapon(2);
+				}
+				Destroy (this.gameObject);
+			}
 		}
 	}
 	

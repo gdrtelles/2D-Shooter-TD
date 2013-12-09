@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 	public bool facingRight = true;	
 	public GameObject ARPickup;
 	public GameObject shotgunPickup;
+	public GameObject pistolPickup;
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	//private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
@@ -201,14 +202,19 @@ public class Enemy : MonoBehaviour
 		scorePos.y += 1.5f;
 
 		//Possibly drop new weapon
-		if(Random.Range (0, 20) == 1){
-			if(Random.Range(0, 2)== 1){
+		if(Random.Range (0, 8) == 1){
+			int rando = Random.Range (0, 4);
+			if(rando == 0){
 				GameObject AR = (GameObject)Instantiate (ARPickup, this.transform.position, Quaternion.Euler(new Vector3(0,0,0)));
 				AR.GetComponent<WeaponPickup>().setWTPickup(0);
 			}
-			else {
+			else if(rando == 1){
 				GameObject shotgun = (GameObject)Instantiate (shotgunPickup, this.transform.position, Quaternion.Euler(new Vector3(0,0,0)));
 				shotgun.GetComponent<WeaponPickup>().setWTPickup(2);
+			}
+			else {
+				GameObject pistol = (GameObject)Instantiate (pistolPickup, this.transform.position, Quaternion.Euler(new Vector3(0,0,0)));
+				pistol.GetComponent<WeaponPickup>().setWTPickup(1);
 			}
 		}
 
