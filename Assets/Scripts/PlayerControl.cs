@@ -25,6 +25,8 @@ public class PlayerControl : MonoBehaviour
 	private Camera cam;
 	public GameObject gun;
 	public GameObject shoulder;
+	private Score lives;
+	public KongregateAPI kongAPI;
 
 
 
@@ -34,6 +36,8 @@ public class PlayerControl : MonoBehaviour
 		groundCheck = transform.Find("groundCheck");
 		anim = GetComponent<Animator>();
 		cam = GameObject.Find ("Main Camera").camera;
+		lives = GameObject.Find("Score").GetComponent<Score>();
+		kongAPI = GameObject.Find ("KongregateAPI").GetComponent<KongregateAPI>();
 	}
 
 
@@ -82,13 +86,26 @@ public class PlayerControl : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.gameObject.tag == "Enemy")
+			lives.lives--;
+			//Application.LoadLevel("gameOver");
+		if(lives.lives <= 0)
+		{
+			// Report Game Statistics to Kongregate
+			if(kongAPI.isKongregate){
+				
+				kongAPI.SubmitStats("HighScore", lives.score);
+				
+			}
 			Application.LoadLevel("gameOver");
+			
+		}
 
 
 	}
 
 	void FixedUpdate ()
 	{
+	
 		// Cache the horizontal input.
 		float h = Input.GetAxis("Horizontal");
 

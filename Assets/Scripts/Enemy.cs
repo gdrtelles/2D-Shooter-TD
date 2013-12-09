@@ -9,16 +9,23 @@ public class Enemy : MonoBehaviour
 	public int HP = 2;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged
-	private SpriteRenderer ren;			// Reference to the sprite renderer.
-	//private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
-	private bool dead = false;			// Whether or not the enemy is dead.
-	private Score score;				// Reference to the Score script.
-	private Transform player;			// Reference to the player's transform.
 	public float xDistance = 2f;
 	public float yDistance = 1f;
 	public bool facingRight = true;	
 	public GameObject ARPickup;
 	public GameObject shotgunPickup;
+	private SpriteRenderer ren;			// Reference to the sprite renderer.
+	//private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
+	private bool dead = false;			// Whether or not the enemy is dead.
+	private Score score;				// Reference to the Score script.
+	private Transform player;			// Reference to the player's transform.
+	private float temp;
+	private Transform check;
+	private RaycastHit2D hit;
+	private bool clear = true;
+	public GameObject jumpingBug; 
+	public GameObject monster;
+
 
 	
 	
@@ -34,6 +41,9 @@ public class Enemy : MonoBehaviour
 
 
 
+
+
+
 	}
 
 	
@@ -43,12 +53,19 @@ public class Enemy : MonoBehaviour
 
 		return Mathf.Abs(transform.position.x - player.position.x) > xDistance;
 	}
+
+	bool CheckXDistanceJumper()
+	{
+		// Returns true if the distance between the enemy and the player in the x axis is greater than the x distance.
+		
+		return Mathf.Abs(transform.position.x - player.position.x) > 5f;
+	}
 	
 	
-	bool CheckYDistance()
+	float CheckYDistance()
 	{
 		// Returns true if the distance between the enemy and the player in the y axis is greater than the y distance.
-		return Mathf.Abs(transform.position.y - player.position.y) > yDistance;
+		return Mathf.Abs(transform.position.y - player.position.y);
 	}
 
 	float CheckDirection()
@@ -56,31 +73,56 @@ public class Enemy : MonoBehaviour
 		return Mathf.Sign(transform.position.x - player.position.x);
 
 	}
-
+/*
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		if(col.gameObject.tag == "Obstacle" && rigidbody2D.velocity.y == 0f)
+		if(col.gameObject.tag == "Obstacle" )// && rigidbody2D.velocity.y == 0f && clear 
 		{
-			rigidbody2D.AddForce(new Vector2(0f, 500f));
+			//rigidbody2D.AddForce(new Vector2(0f, 500f));
+			//clear = true;
+
+			moveSpeed = 0;
 		}
 	
-		
 	}
 
-
+	void OnTriggerExit2D(Collider2D col)
+	{
+		if(col.gameObject.tag == "Obstacle" )// && rigidbody2D.velocity.y == 0f && clear 
+		{
+			moveSpeed = 4f;
+			TrackPlayer();
+			//rigidbody2D.AddForce(new Vector2(0f, 500f));
+			//clear = true;
+		}
+		
+	}
+*/
 	void FixedUpdate ()
 	{
 
-		if(rigidbody2D.velocity.y > 12f)
-			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, transform.localScale.y * 0);
+		if(!CheckXDistanceJumper() && jumpingBug.rigidbody2D.velocity.y == 0f)
+			jumpingBug.rigidbody2D.AddForce(new Vector2(100f, CheckYDistance()*200f));
+		
+		/*	if(CheckYDistance() < 2f)
+			{	
+				jumpingBug.rigidbody2D.AddForce(new Vector2(100f, 200f));
+			}
+			else if(CheckYDistance() < 4f)
+			{
+				jumpingBug.rigidbody2D.AddForce(new Vector2(100f, 400f));
+			}
+			*/
+		//if(rigidbody2D.velocity.y > 12f)
+			//rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, transform.localScale.y * 0);
 
 		TrackPlayer();
 
 	
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
-		//if(HP == 1 && damagedEnemy != null)
+		if(HP == 1 && damagedEnemy != null)
 			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.
-			//ren.sprite = damagedEnemy;
+			ren.sprite = damagedEnemy;
 			
 		// If the enemy has zero or fewer hit points and isn't dead yet...
 		if(HP <= 0 && !dead)
@@ -91,28 +133,34 @@ public class Enemy : MonoBehaviour
 	void TrackPlayer ()
 	{	
 		// checks to see if the player is far away from the enemy if so makes the enemy close the gap
-		if(CheckXDistance())
+		if(CheckXDistance() )
 		{
 
-			if(CheckDirection() > 0 && !facingRight)
+			if(CheckDirection() > 0 && !facingRight  )
+			{
+
+				Flip();
+				moveSpeed = -moveSpeed;
+			}
+			else if(CheckDirection() < 0 && facingRight )
 			{
 				Flip();
 				moveSpeed = -moveSpeed;
 			}
-			else if(CheckDirection() < 0 && facingRight)
-			{
-				Flip();
-				moveSpeed = -moveSpeed;
-			}
+		
 			// Set the enemy's velocity to moveSpeed in the x direction.
-			rigidbody2D.velocity = new Vector2(transform.localScale.x *( moveSpeed * CheckDirection()), rigidbody2D.velocity.y);	
+			monster.rigidbody2D.velocity = new Vector2(transform.localScale.x *( moveSpeed * CheckDirection()), rigidbody2D.velocity.y);
+			if(jumpingBug.rigidbody2D.velocity.y == 0)
+				jumpingBug.rigidbody2D.velocity = new Vector2(transform.localScale.x * ( moveSpeed * CheckDirection()), rigidbody2D.velocity.y);
 		}
+
 	}
 	
 	public void Hurt()
 	{
 		// Reduce the number of hit points by one.
 		HP--;
+		rigidbody2D.AddForce( new Vector2(1000f*CheckDirection(),0f));
 	}
 	
 	void Death()

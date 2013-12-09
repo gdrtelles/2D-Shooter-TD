@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour, IEventListener {
 	private Score Round;				// Reference to the Score script.
 	private Transform player;
 	private Vector2 offset;
-	public float distance = 15;
+	public float distance = 10;
 
 	//event listener that starts the coroutine
 	public bool OnMonsterDestroyed(IEvent evt){
@@ -53,6 +53,7 @@ public class Spawner : MonoBehaviour, IEventListener {
 		if(spawnedEnemy == 0 && !inACoroutine){
 			StartCoroutine("SpawnEnemies");
 		}
+
 	}
 	
 	IEnumerator SpawnEnemies(){
@@ -75,7 +76,10 @@ public class Spawner : MonoBehaviour, IEventListener {
 		float randomizer = Mathf.Sign(Random.Range(-1.0f,1.0f));
 		distance = distance * randomizer;
 		offset = new Vector2 (player.position.x - distance , transform.position.y);
-		Instantiate(EasyEnemy, offset, transform.rotation);
+		if(numEnemy % 7 == 0 && numEnemy != 0)
+			Instantiate(MediumEnemy, offset, transform.rotation);
+		else
+			Instantiate(EasyEnemy, offset, transform.rotation);
 
 		// Increase the total number of enemies spawned and the number of spawned enemies
 		numEnemy++;
