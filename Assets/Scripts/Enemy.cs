@@ -218,8 +218,7 @@ public class Enemy : MonoBehaviour
 			}
 		}
 
-
-		Destroy(gameObject);
+		Destroy (this.gameObject);
 
 		EventManager.instance.QueueEvent(new MonsterDestroyed());
 	}
@@ -233,4 +232,5 @@ public class Enemy : MonoBehaviour
 		enemyScale.x *= -1;
 		transform.localScale = enemyScale;
 	}
+	
 }

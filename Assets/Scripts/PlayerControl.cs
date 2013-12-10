@@ -77,7 +77,7 @@ public class PlayerControl : MonoBehaviour
 			Flip();
 		}
 		float rotation = Mathf.Atan2((mousePos.y - gun.transform.position.y), (mousePos.x - gun.transform.position.x)) * Mathf.Rad2Deg;
-		Debug.Log (rotation);
+//		Debug.Log (rotation);
 		if(facingRight){ 
 			if((rotation <= 90 && rotation > 0) || (rotation >= -90 && rotation < 0)){
 				gun.transform.eulerAngles = new Vector3(0, 0, rotation);

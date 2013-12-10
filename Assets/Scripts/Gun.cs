@@ -56,6 +56,7 @@ public class Gun : MonoBehaviour
 	private GameObject hand_R;
 	private GameObject hand_RCopy;
 	private int currWepTypeRounds;
+	private bool canPickup;
 	
 	private Hashtable ht = new Hashtable();
 	private Hashtable ht1 = new Hashtable();
@@ -65,14 +66,14 @@ public class Gun : MonoBehaviour
 	void Awake()
 	{
 		//Default weapon stats
-		AR_RoF = 0.15f;
+		AR_RoF = 0.125f;
 		AR_ROUNDS = 50;
 		AR_CLIPS = 4;
 		AR_RELOADSPEED = 2f;
-		SHOTGUN_RoF = 0.5f;
+		SHOTGUN_RoF = 0.4f;
 		SHOTGUN_ROUNDS = 4;
 		SHOTGUN_CLIPS = 4;
-		SHOTGUN_RELOADSPEED = 0.7f;
+		SHOTGUN_RELOADSPEED = 0.6f;
 		PISTOL_RoF = 0.125f;
 		PISTOL_ROUNDS = 7;
 		PISTOL_CLIPS = 10;
@@ -91,6 +92,7 @@ public class Gun : MonoBehaviour
 		setWeapon(2);
 		canFire = true;
 		canFire1 = true;
+		canPickup = false;
 	}
 	
 	
@@ -116,8 +118,10 @@ public class Gun : MonoBehaviour
 
 		if(currWT != WeaponType.DUAL_PISTOL && Input.GetKeyDown (KeyCode.R) && canFire){
 			canFire = false;
-			ht = iTween.Hash ("from", 0f,"to", 1f, "time", reloadSpeed, "onupdate", "reloading");
-			iTween.ValueTo(gameObject, ht);
+			if(currWT != WeaponType.SHOTGUN){
+				ht = iTween.Hash ("from", 0f,"to", 1f, "time", reloadSpeed, "onupdate", "reloading");
+				iTween.ValueTo(gameObject, ht);
+			}
 			reloadBar.GetComponent<SpriteRenderer>().color = new Color (237f, 28f, 36f);
 			Invoke ("reloadWeapon", reloadSpeed);
 		}
@@ -136,6 +140,14 @@ public class Gun : MonoBehaviour
 				iTween.ValueTo(gameObject, ht1);
 				Invoke ("reloadSecondaryWeapon", reloadSpeed);
 			}
+		}
+
+		if(Input.GetKeyDown (KeyCode.LeftShift)){
+			canPickup = true;
+		}
+
+		if(Input.GetKeyUp (KeyCode.LeftShift)){
+			canPickup = false;
 		}
 	}
 	
@@ -174,7 +186,7 @@ public class Gun : MonoBehaviour
 				if(playerCtrl.facingRight)
 				{
 					// ... instantiate the rocket facing right and set it's velocity to the right. 
-					Rigidbody2D[] flechetteArray = new Rigidbody2D[5];
+					Rigidbody2D[] flechetteArray = new Rigidbody2D[10];
 					
 					for(int i = 0; i < flechetteArray.Length; i++){
 						int flechSpawner = randIntGen ();
@@ -191,7 +203,7 @@ public class Gun : MonoBehaviour
 				else
 				{
 					// ... instantiate the rocket facing right and set it's velocity to the right. 
-					Rigidbody2D[] flechetteArray = new Rigidbody2D[4];
+					Rigidbody2D[] flechetteArray = new Rigidbody2D[10];
 					
 					for(int i = 0; i < flechetteArray.Length; i++){
 						int flechSpawner = randIntGen ();
@@ -421,7 +433,7 @@ public class Gun : MonoBehaviour
 			ht = iTween.Hash ("from", 0f,"to", 1f, "time", reloadSpeed, "onupdate", "reloading");
 			iTween.ValueTo(gameObject, ht);
 			//clips = totalRounds/
-			reloadBar.GetComponent<SpriteRenderer>().color = new Color (237f, 28f, 36f);
+			reloadBar.GetComponent<SpriteRenderer>().color = new Color (110f, 60f, 60f);
 			Invoke ("reloadWeapon", reloadSpeed);
 		}
 		else if(rounds <= 0 && totalRounds <= 0){ canFire = false;}
@@ -432,7 +444,7 @@ public class Gun : MonoBehaviour
 			//Debug.Log ("reload second weapon1");
 			ht1 = iTween.Hash ("from", 0f,"to", 1f, "time", reloadSpeed, "onupdate", "reloading1");
 			iTween.ValueTo(gameObject, ht1);
-			reloadBar1.GetComponent<SpriteRenderer>().color = new Color (237f, 28f, 36f);
+			reloadBar1.GetComponent<SpriteRenderer>().color = new Color (110f, 60f, 60f);
 			Invoke ("reloadSecondaryWeapon", reloadSpeed);
 		}
 		else if(rounds1 <= 0 && totalRounds1 <= 0){ canFire1 = false;}
@@ -460,6 +472,7 @@ public class Gun : MonoBehaviour
 			if(totalRounds - 1 >= 0 && rounds < SHOTGUN_ROUNDS){
 				totalRounds --;
 				rounds++;
+				reloadBar.transform.localScale = new Vector3(reloadBar.transform.localScale.x + (1f/currWepTypeRounds), 1, 1);
 			}
 			break;
 		case WeaponType.PISTOL:
@@ -529,5 +542,9 @@ public class Gun : MonoBehaviour
 	
 	public WeaponType getCurrWT(){
 		return currWT;
+	}
+	
+	public bool getCanPickup(){
+		return canPickup;
 	}
 }

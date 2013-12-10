@@ -9,7 +9,7 @@ public class WeaponPickup : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		
+		Invoke ("destroyPickup", 12.0f);
 	}
 	
 	// Update is called once per frame
@@ -18,24 +18,33 @@ public class WeaponPickup : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D(Collision2D col){
-		//Debug.Log ("first");
+		if(col.collider.CompareTag("ground")){
+			this.collider2D.isTrigger = true;
+			this.rigidbody2D.gravityScale = 0.0f;
+			//Destroy (rigidbody2D);
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D col){
+		Debug.Log (col.gameObject.tag);
 		if(col.gameObject.CompareTag("Player")){
-			if(WTPickup == WeaponPickupType.AR){
+			Debug.Log ("first");
+			if(WTPickup == WeaponPickupType.AR && col.GetComponentInChildren<Gun>().getCanPickup()){
 				//Debug.Log ("here");
-				col.collider.gameObject.GetComponentInChildren<Gun>().setWeapon(0);
+				col.gameObject.GetComponentInChildren<Gun>().setWeapon(0);
 				Destroy(this.gameObject);
 			}
-			else if(WTPickup == WeaponPickupType.SHOTGUN){
-				col.collider.gameObject.GetComponentInChildren<Gun>().setWeapon(1);
+			else if(WTPickup == WeaponPickupType.SHOTGUN && col.GetComponentInChildren<Gun>().getCanPickup()){
+				col.gameObject.GetComponentInChildren<Gun>().setWeapon(1);
 				Destroy (this.gameObject);
 			}
-			else if(WTPickup == WeaponPickupType.PISTOL){
-				if(col.collider.gameObject.GetComponentInChildren<Gun>().getCurrWT() == WeaponType.PISTOL
-				   || col.collider.gameObject.GetComponentInChildren<Gun>().getCurrWT() == WeaponType.DUAL_PISTOL){
-					col.collider.gameObject.GetComponentInChildren<Gun>().setWeapon(3);
+			else if(WTPickup == WeaponPickupType.PISTOL && col.GetComponentInChildren<Gun>().getCanPickup()){
+				if(col.gameObject.GetComponentInChildren<Gun>().getCurrWT() == WeaponType.PISTOL
+				   || col.gameObject.GetComponentInChildren<Gun>().getCurrWT() == WeaponType.DUAL_PISTOL){
+					col.gameObject.GetComponentInChildren<Gun>().setWeapon(3);
 				}
 				else {
-					col.collider.gameObject.GetComponentInChildren<Gun>().setWeapon(2);
+					col.gameObject.GetComponentInChildren<Gun>().setWeapon(2);
 				}
 				Destroy (this.gameObject);
 			}
@@ -54,5 +63,9 @@ public class WeaponPickup : MonoBehaviour {
 			this.WTPickup = WeaponPickupType.SHOTGUN;
 			break;
 		}
+	}
+
+	void destroyPickup(){
+		Destroy (this.gameObject);
 	}
 }

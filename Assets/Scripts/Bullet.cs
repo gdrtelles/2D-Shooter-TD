@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
 		// If it hits an enemy...
 		if(col.tag == "Enemy")
 		{
-			Debug.Log("hey");
+//			Debug.Log("hey");
 			// ... find the Enemy script and call the Hurt function.
 			col.gameObject.GetComponent<Enemy>().Hurt();
 
