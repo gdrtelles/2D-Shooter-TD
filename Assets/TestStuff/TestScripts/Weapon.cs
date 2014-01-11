@@ -5,6 +5,7 @@ public class Weapon : MonoBehaviour {
 	protected float rateOfFire;
 	protected float reloadSpeed;
 	protected int totalRounds;
+	protected int currentRounds;
 	protected int clipSize;
 	protected int clips;
 	protected bool canFire;
